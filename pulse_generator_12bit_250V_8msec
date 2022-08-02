@@ -1,0 +1,113 @@
+void setup() {
+  // put your setup code here, to run once:
+            pinMode(52,INPUT) ;    //スイッチに接続ピンをデジタル入力に設定
+            pinMode(13,OUTPUT) ;  //ＬＥＤに接続ピンをデジタル出力に設定
+            analogWriteResolution(12); // 0 to 255 > 0 to 4095
+            analogWrite(DAC0, 535); // base as DAC0 = 0.825V (as 511) a little modified
+            analogWrite(DAC1, 511); // base as DAC1 = 0.825V to be 0V by subtraction
+            delayMicroseconds(20000);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+	int var = 0;
+           if (digitalRead(52) == HIGH) {     //スイッチの状態を調べる
+                digitalWrite(13,HIGH) ;      //スイッチが押されているならLEDを点灯
+              delay(5000); // wait 5 sec
+            digitalWrite(13,LOW);	//LEDを消灯
+            delay(300);
+
+            while(var<3) {
+                        digitalWrite(13,HIGH);	//LEDを点灯
+                        delay(500);
+                        digitalWrite(13,LOW);	//LEDを消灯
+                        delay(300);
+                        var++;
+	  }
+
+// #1 pulse
+            analogWrite(DAC1, 3420); // to be 2.3875   1.5625  -12.5000  250V
+            delay(8); // wait 8 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #2 pulse
+            analogWrite(DAC1, 2256); // to be 1.7625   0.9375  -7.5000 150V
+            delay(8); // wait 8 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #3 pulse
+            analogWrite(DAC1, 744); // to be 0.9500 >0.1250>-1.0000>20V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #4 pulse
+            analogWrite(DAC1, 651); // to be 12V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #5 pulse
+            analogWrite(DAC1, 595); // to be 7.2V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #6 pulse
+            analogWrite(DAC1, 561); // to be 4.32V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #7 pulse
+            analogWrite(DAC1, 541); // to be 2.592V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #8 pulse
+            analogWrite(DAC1, 278); // to be 0.7000 >-0.1250>1.0000>-20V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #9 pulse
+            analogWrite(DAC1, 371); // to be -12V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #10 pulse
+            analogWrite(DAC1, 427); // to be -7.2V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #11 pulse
+            analogWrite(DAC1, 461); // to be -4.32V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+// #12 pulse
+            analogWrite(DAC1, 481); // to be -2.592V
+            delay(50); // wait 50 msec
+            analogWrite(DAC1, 511); // to be 0V
+            delay(50); // wait 50 msec
+
+            while(var<3) {
+                        digitalWrite(13,HIGH);	//LEDを点灯
+                        delay(500);
+                        digitalWrite(13,LOW);	//LEDを消灯
+                        delay(300);
+                        var++;
+	  }
+            
+           } else {
+                digitalWrite(13,LOW) ;       //スイッチが押されていないならLEDを消灯
+           }
+
+
+}
