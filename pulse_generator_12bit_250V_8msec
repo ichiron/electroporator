@@ -1,7 +1,7 @@
 void setup() {
   // put your setup code here, to run once:
-            pinMode(52,INPUT) ;    //スイッチに接続ピンをデジタル入力に設定
-            pinMode(13,OUTPUT) ;  //ＬＥＤに接続ピンをデジタル出力に設定
+            pinMode(52,INPUT) ;    //set 52 as input for on-off
+            pinMode(13,OUTPUT) ;  //set 13 as output for turn on ＬＥＤ
             analogWriteResolution(12); // 0 to 255 > 0 to 4095
             analogWrite(DAC0, 535); // base as DAC0 = 0.825V (as 511) a little modified
             analogWrite(DAC1, 511); // base as DAC1 = 0.825V to be 0V by subtraction
@@ -11,16 +11,16 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 	int var = 0;
-           if (digitalRead(52) == HIGH) {     //スイッチの状態を調べる
-                digitalWrite(13,HIGH) ;      //スイッチが押されているならLEDを点灯
+           if (digitalRead(52) == HIGH) {     //check switch statu
+                digitalWrite(13,HIGH) ;      //if on, turn on LED
               delay(5000); // wait 5 sec
-            digitalWrite(13,LOW);	//LEDを消灯
+            digitalWrite(13,LOW);	//turn off LED
             delay(300);
 
             while(var<3) {
-                        digitalWrite(13,HIGH);	//LEDを点灯
+                        digitalWrite(13,HIGH);	//turn on LED
                         delay(500);
-                        digitalWrite(13,LOW);	//LEDを消灯
+                        digitalWrite(13,LOW);	//turn off LED
                         delay(300);
                         var++;
 	  }
@@ -98,15 +98,15 @@ void loop() {
             delay(50); // wait 50 msec
 
             while(var<3) {
-                        digitalWrite(13,HIGH);	//LEDを点灯
+                        digitalWrite(13,HIGH);	//turn on LED
                         delay(500);
-                        digitalWrite(13,LOW);	//LEDを消灯
+                        digitalWrite(13,LOW);	//turn off LED
                         delay(300);
                         var++;
 	  }
             
            } else {
-                digitalWrite(13,LOW) ;       //スイッチが押されていないならLEDを消灯
+                digitalWrite(13,LOW) ;       //turn off LED while swith-off
            }
 
 
